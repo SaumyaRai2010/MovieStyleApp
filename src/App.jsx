@@ -51,7 +51,7 @@ function App() {
               <i className="fas fa-times text-white"></i>
             ) : (
               <svg
-                className="w-8 h-6 text-customPurple"
+                className="w-10 h-10 text-customPurple"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
