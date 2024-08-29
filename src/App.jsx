@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Favourites from "./components/Favourites";
+import MovieDetail from "./components/MovieDetail";
 import "./App.css";
 
 function App() {
@@ -14,7 +15,6 @@ function App() {
   return (
     <Router>
       <div className="flex h-screen">
-        {/* Sidebar */}
         <div
           className={`fixed top-0 left-0 h-full w-64 bg-customPurple text-white
     ${isNavbarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -61,7 +61,7 @@ function App() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="3"
-                  d="M4 6h16M4 12h16M4 18h8" // Adjusted path for half-line
+                  d="M4 6h16M4 12h16M4 18h8" 
                 />
               </svg>
             )}
@@ -81,6 +81,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/favourites" element={<Favourites movies={[]} />} />
+            <Route path="/movie/:imdbID" element={<MovieDetail />} /> 
           </Routes>
         </div>
 

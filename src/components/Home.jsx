@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { topRatedMovies } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
   const itemsLength = topRatedMovies.length;
+  const navigate = useNavigate(); 
 
   const handleSlideChange = (event) => {
     let newIndex = event.item;
@@ -15,6 +17,10 @@ function Home() {
       newIndex = 0;
     }
     setActiveIndex(newIndex);
+  };
+
+  const handleItemClick = (imdbID) => {
+    navigate(`/movie/${imdbID}`);
   };
 
   const getOpacityAndScale = (index) => {
@@ -44,8 +50,9 @@ function Home() {
       style={{
         width: "calc(150%)",
         height: "400px",
-        marginLeft: index !== activeIndex ? "-50px" : "0", // Overlapping effect
+        marginLeft: index !== activeIndex ? "-50px" : "0",
       }}
+      onClick={() => handleItemClick(movie.imdbID)}
     >
       <img
         src={movie.Poster}
