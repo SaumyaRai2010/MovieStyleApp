@@ -1,7 +1,7 @@
-import React, { act, useState } from "react";
+import React, { useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { topRatedMovies } from "../constants"; // Adjust the path to reach constants.js
+import { topRatedMovies } from "../constants";
 
 function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -11,8 +11,7 @@ function Home() {
     let newIndex = event.item;
     if (newIndex < 0) {
       newIndex = itemsLength - 1;
-    }
-    else if (newIndex >= itemsLength) {
+    } else if (newIndex >= itemsLength) {
       newIndex = 0;
     }
     setActiveIndex(newIndex);
@@ -60,7 +59,9 @@ function Home() {
     <div className="p-4">
       <div className="carousel-container mx-auto max-w-lg relative">
         <h1 className="text-5xl text-gray-700 font-bold mt-4">Movies</h1>
-        <h2 className="text-xl text-gray-500 font-medium mt-8 mb-5">Popular</h2>
+        <h2 className="text-2xl text-gray-500 font-semibold mt-8 mb-5">
+          Popular
+        </h2>
         <AliceCarousel
           infinite
           items={items}
@@ -74,6 +75,11 @@ function Home() {
           disableDotsControls
           // disableButtonsControls
         />
+
+        <span className="flex justify-between mt-8 mb-24">
+          <h2 className="text-2xl text-gray-500 font-semibold">In Theatre</h2>
+          <h2 className="text-lg text-customPurple font-semibold">Browse All</h2>
+        </span>
       </div>
     </div>
   );

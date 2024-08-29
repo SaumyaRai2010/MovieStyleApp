@@ -83,6 +83,19 @@ function App() {
             <Route path="/favourites" element={<Favourites movies={[]} />} />
           </Routes>
         </div>
+
+        {/* Footer */}
+        <footer className="flex justify-evenly bg-gray-100 items-center text-white p-4 fixed bottom-0 w-full z-50">
+          <Link to="/" className="text-3xl">
+            <i className="fas fa-dice-six text-customPurple"></i>
+          </Link>
+          <Link to="/" className="text-3xl">
+            <i className="fas fa-tv text-gray-500"></i>
+          </Link>
+          <Link to="/favourites" className="text-3xl">
+            <i className="fas fa-heart text-gray-500"></i>
+          </Link>
+        </footer>
       </div>
     </Router>
   );
