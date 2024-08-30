@@ -30,12 +30,12 @@ function Home() {
       index === (activeIndex + 1) % itemsLength ||
       index === (activeIndex - 1 + itemsLength) % itemsLength
     ) {
-      return "opacity-50 z-15 scale-60";
+      return "opacity-70 z-15 scale-60 translate-x-1";
     } else if (
       index === (activeIndex + 2) % itemsLength ||
       index === (activeIndex - 2 + itemsLength) % itemsLength
     ) {
-      return "opacity-25 z-10 scale-50";
+      return "opacity-15 z-10 scale-50";
     } else {
       return "opacity-5 z-5 scale-50";
     }
