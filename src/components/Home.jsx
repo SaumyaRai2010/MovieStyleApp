@@ -50,14 +50,14 @@ function Home() {
       style={{
         width: "calc(150%)",
         height: "400px",
-        marginLeft: index !== activeIndex ? "-50px" : "0",
+        marginLeft: index === activeIndex ? "0" : "-100px"
       }}
       onClick={() => handleItemClick(movie.imdbID)}
     >
       <img
         src={movie.Poster}
         alt={movie.Title}
-        className="w-full object-cover rounded-3xl h-full"
+        className="w-full object-cover rounded-3xl h-full hover:cursor-pointer"
       />
       <div className="absolute bottom-4 right-4 flex items-center space-x-2 bg-black bg-opacity-50 text-white py-1 px-3 rounded-full">
         <i className="fas fa-star text-yellow-400"></i> 
