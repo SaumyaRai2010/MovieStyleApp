@@ -5,11 +5,33 @@ import { topRatedMovies } from "../constants";
 const MovieDetail = () => {
   const { imdbID } = useParams();
   const [movie, setMovie] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const movie = topRatedMovies.find((movie) => movie.imdbID === imdbID);
     setMovie(movie);
+
+    // Check if the movie is already in favorites
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const isFav = favorites.some((favMovie) => favMovie.imdbID === imdbID);
+    setIsFavorite(isFav);
   }, [imdbID]);
+
+  const handleFavoriteClick = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (isFavorite) {
+      // Remove from favorites
+      const newFavorites = favorites.filter((favMovie) => favMovie.imdbID !== imdbID);
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      setIsFavorite(false);
+    } else {
+      // Add to favorites
+      favorites.push(movie);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      setIsFavorite(true);
+    }
+  };
 
   const convertRuntime = (runtime) => {
     const minutes = parseInt(runtime.split(" ")[0], 10);
@@ -56,7 +78,13 @@ const MovieDetail = () => {
         <div className="flex justify-between items-center">
           <span className="text-gray-400">{convertRuntime(movie.Runtime)}</span>
           <div className="flex items-center space-x-4">
-            <i className="fa-regular fa-heart text-red-500 text-3xl"></i>
+            <button onClick={handleFavoriteClick} aria-label="Add to favorites">
+              <i
+                className={`fa-heart text-3xl ${
+                  isFavorite ? "fas text-red-500" : "far text-red-400"
+                }`}
+              ></i>
+            </button>
             <div className="flex items-center bg-white rounded-lg space-x-2 shadow-md p-2">
               <i className="fas fa-star text-yellow-400 mr-1"></i>
               <span className="text-gray-600">{movie.imdbRating}</span>
@@ -112,7 +140,7 @@ const MovieDetail = () => {
             </div>
 
             {/* Actor 2 */}
-            <div className="flex items-center  border-b border-gray-300">
+            <div className="flex items-center border-b border-gray-300">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Chris_Hemsworth_by_Gage_Skidmore_3.jpg/1200px-Chris_Hemsworth_by_Gage_Skidmore_3.jpg"
                 alt="Chris Hemsworth"
@@ -125,7 +153,7 @@ const MovieDetail = () => {
             </div>
 
             {/* Actor 3 */}
-            <div className="flex items-center  border-b border-gray-300">
+            <div className="flex items-center border-b border-gray-300">
               <img
                 src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/z3dvKqMNDQWk3QLxzumloQVR0pv.jpg"
                 alt="Mark Ruffalo"

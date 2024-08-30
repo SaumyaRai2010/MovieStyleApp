@@ -103,8 +103,8 @@ function Home() {
           animationDuration={800} // Smooth transition duration
           animationEasingFunction="ease" // Smooth easing function
           onSlideChanged={handleSlideChange} // Track active slide
-          disableDotsControls
-          // disableButtonsControls
+          // disableDotsControls
+          disableButtonsControls
         />
 
         <span className="flex justify-between mt-8 mb-24">

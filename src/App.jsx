@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Favourites from "./components/Favourites";
@@ -7,6 +7,13 @@ import "./App.css";
 
 function App() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [favouriteMovies, setFavouriteMovies] = useState(JSON.parse(localStorage.getItem("favorites")) || []);
+
+  console.log(favouriteMovies)
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavouriteMovies(storedFavorites);
+  }, []);
 
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
@@ -80,22 +87,22 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/favourites" element={<Favourites movies={[]} />} />
+            <Route path="/favourites" element={<Favourites movies={favouriteMovies} />} />
             <Route path="/movie/:imdbID" element={<MovieDetail />} /> 
           </Routes>
         </div>
 
         {/* Footer */}
         <footer className="flex justify-evenly bg-gray-100 items-center text-white p-4 fixed bottom-0 w-full z-50">
-          <Link to="/" className="text-3xl">
+          <div className="text-3xl">
             <i className="fas fa-dice-six text-customPurple"></i>
-          </Link>
-          <Link to="/" className="text-3xl">
+          </div>
+          <div className="text-3xl">
             <i className="fas fa-tv text-gray-500"></i>
-          </Link>
-          <Link to="/favourites" className="text-3xl">
+          </div>
+          <div className="text-3xl">
             <i className="fas fa-heart text-gray-500"></i>
-          </Link>
+          </div>
         </footer>
       </div>
     </Router>
