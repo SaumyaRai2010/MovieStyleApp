@@ -87,7 +87,14 @@ function Home() {
   return (
     <div className="p-4">
       <div className="carousel-container mx-auto max-w-lg relative">
-        <h1 className="text-5xl text-gray-700 font-bold mt-3">Movies</h1>
+      <div className="flex items-center justify-between">
+          <h1 className="text-5xl text-gray-700 font-bold mt-3">Movies</h1>
+          <img
+            src="https://cdn.britannica.com/12/215912-050-02257657/Indian-actor-Amitabh-Bachchan-2013.jpg" 
+            alt="Person"
+            className="w-16 h-16 rounded-full border-4 border-customPurple object-cover"
+          />
+        </div>
         <h2 className="text-2xl text-gray-500 font-semibold mt-7 mb-5">
           Popular
         </h2>
