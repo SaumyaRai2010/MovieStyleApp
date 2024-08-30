@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
 import Home from "./components/Home";
 import Favourites from "./components/Favourites";
 import MovieDetail from "./components/MovieDetail";
@@ -7,9 +12,11 @@ import "./App.css";
 
 function App() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const [favouriteMovies, setFavouriteMovies] = useState(JSON.parse(localStorage.getItem("favorites")) || []);
+  const [favouriteMovies, setFavouriteMovies] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
-  console.log(favouriteMovies)
+  // console.log(favouriteMovies)
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavouriteMovies(storedFavorites);
@@ -28,20 +35,28 @@ function App() {
     transition-transform duration-300 ease-in-out z-50`}
         >
           <nav className="mt-16 flex flex-col items-center">
-            <Link
+            <NavLink
               to="/"
-              className="text-white text-xl py-2"
+              className={
+                ({ isActive }) =>
+                  !isActive
+                    ? "text-violet-400 text-xl py-2" 
+                    : "text-white text-xl py-2" 
+              }
               onClick={toggleNavbar}
             >
               <i className="fas fa-home"></i> Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/favourites"
-              className="text-white text-xl py-2"
-              onClick={toggleNavbar}
+              className={({ isActive }) =>
+                !isActive
+                  ? "text-violet-400 text-xl py-2" 
+                  : "text-white text-xl py-2" 
+              }
             >
               <i className="fas fa-star"></i> Favourites
-            </Link>
+            </NavLink>
           </nav>
         </div>
 
@@ -67,7 +82,7 @@ function App() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="3"
-                  d="M4 6h16M4 12h16M4 18h8" 
+                  d="M4 6h16M4 12h16M4 18h8"
                 />
               </svg>
             )}
@@ -86,8 +101,11 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/favourites" element={<Favourites movies={favouriteMovies} />} />
-            <Route path="/movie/:imdbID" element={<MovieDetail />} /> 
+            <Route
+              path="/favourites"
+              element={<Favourites movies={favouriteMovies} />}
+            />
+            <Route path="/movie/:imdbID" element={<MovieDetail />} />
           </Routes>
         </div>
 

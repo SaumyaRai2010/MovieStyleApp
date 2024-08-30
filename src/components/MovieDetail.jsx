@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { topRatedMovies } from "../constants";
 
-const MovieDetail = () => {
+const MovieDetail = (setIsNavbarVisible) => {
   const { imdbID } = useParams();
   const [movie, setMovie] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
