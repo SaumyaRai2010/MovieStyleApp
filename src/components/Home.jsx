@@ -100,9 +100,9 @@ function Home() {
             1024: { items: 3 },
           }}
           controlsStrategy="alternate"
-          animationDuration={800} // Smooth transition duration
-          animationEasingFunction="ease" // Smooth easing function
-          onSlideChanged={handleSlideChange} // Track active slide
+          animationDuration={800} 
+          animationEasingFunction="ease" 
+          onSlideChanged={handleSlideChange} 
           // disableDotsControls
           disableButtonsControls
         />

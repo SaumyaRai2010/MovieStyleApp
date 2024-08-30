@@ -45,7 +45,6 @@ function App() {
           </nav>
         </div>
 
-        {/* Main content */}
         <div
           className={`flex-1 p-4 transition-all duration-300
             ${isNavbarOpen ? "ml-64" : "ml-0"}`}
@@ -92,7 +91,6 @@ function App() {
           </Routes>
         </div>
 
-        {/* Footer */}
         <footer className="flex justify-evenly bg-gray-100 items-center text-white p-4 fixed bottom-0 w-full z-50">
           <div className="text-3xl">
             <i className="fas fa-dice-six text-customPurple"></i>

@@ -11,7 +11,6 @@ const MovieDetail = () => {
     const movie = topRatedMovies.find((movie) => movie.imdbID === imdbID);
     setMovie(movie);
 
-    // Check if the movie is already in favorites
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const isFav = favorites.some((favMovie) => favMovie.imdbID === imdbID);
     setIsFavorite(isFav);
@@ -21,12 +20,12 @@ const MovieDetail = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     if (isFavorite) {
-      // Remove from favorites
-      const newFavorites = favorites.filter((favMovie) => favMovie.imdbID !== imdbID);
+      const newFavorites = favorites.filter(
+        (favMovie) => favMovie.imdbID !== imdbID
+      );
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
       setIsFavorite(false);
     } else {
-      // Add to favorites
       favorites.push(movie);
       localStorage.setItem("favorites", JSON.stringify(favorites));
       setIsFavorite(true);
@@ -122,11 +121,9 @@ const MovieDetail = () => {
           </div>
         </div>
 
-        {/* Cast Section */}
         <div className="mt-2 mb-20">
           <h2 className="text-xl font-semibold text-black mb-4">Cast</h2>
           <div className="space-y-4">
-            {/* Actor 1 */}
             <div className="flex items-center border-b border-gray-300">
               <img
                 src="https://cdn.britannica.com/99/254199-050-98CF4E04/Robert-Downey-JR-UK-premier-Oppenheimer-movie-July-2023.jpg"
@@ -139,7 +136,6 @@ const MovieDetail = () => {
               </div>
             </div>
 
-            {/* Actor 2 */}
             <div className="flex items-center border-b border-gray-300">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Chris_Hemsworth_by_Gage_Skidmore_3.jpg/1200px-Chris_Hemsworth_by_Gage_Skidmore_3.jpg"
@@ -152,7 +148,6 @@ const MovieDetail = () => {
               </div>
             </div>
 
-            {/* Actor 3 */}
             <div className="flex items-center border-b border-gray-300">
               <img
                 src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/z3dvKqMNDQWk3QLxzumloQVR0pv.jpg"
